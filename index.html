@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIL KI DIWALI · Hosted by Sarvesh &amp; Rishi</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=Bungee&family=Righteous&family=Space+Grotesk:wght@500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FDF8EC',
+            'cream-dark': '#F4EAD4',
+            crimson: '#D92344',
+            'crimson-dark': '#B51633',
+            marigold: '#FFC700',
+            'marigold-hover': '#E5B300',
+            emerald: '#0C4A34',
+            hotpink: '#E91E63',
+            peacock: '#0284C7',
+            saffron: '#FF6F00'
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            script: ['"Caveat"', 'cursive'],
+            retro: ['"Bungee"', 'sans-serif'],
+            funky: ['"Righteous"', 'cursive']
+          },
+          boxShadow: {
+            'brutal': '4px 4px 0px 0px #000000',
+            'brutal-lg': '6px 6px 0px 0px #000000',
+            'brutal-xl': '8px 8px 0px 0px #000000',
+            'brutal-sm': '2px 2px 0px 0px #000000'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html {
+      overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
+    }
+    body {
+      background-color: #FDF8EC;
+      background-image: radial-gradient(#d1c7b7 1.5px, transparent 1.5px);
+      background-size: 24px 24px;
+      color: #111827;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
+      position: relative;
+    }
+    * {
+      box-sizing: border-box;
+    }
+
+    /* --- FAIRY LIGHTS & FESTIVE OVERLAYS --- */
+    .fairy-string {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 28px;
+      pointer-events: none;
+      z-index: 45;
+      overflow: hidden;
+    }
+
+    @keyframes fairyGlow {
+      0%, 100% { opacity: 0.95; filter: drop-shadow(0 0 6px var(--glow-color, #FFC700)); transform: scale(1); }
+      50% { opacity: 0.35; filter: drop-shadow(0 0 2px var(--glow-color, #FFC700)); transform: scale(0.92); }
+    }
+    .fairy-bulb {
+      animation: fairyGlow 2.2s infinite ease-in-out;
+      transform-origin: top center;
+    }
+
+    /* --- FLOATING DIYA & SKY LANTERNS (KANDILS) --- */
+    @keyframes floatLantern1 {
+      0% { transform: translateY(0px) rotate(-1deg); }
+      50% { transform: translateY(-22px) rotate(2deg); }
+      100% { transform: translateY(0px) rotate(-1deg); }
+    }
+    @keyframes floatLantern2 {
+      0% { transform: translateY(0px) rotate(2deg); }
+      50% { transform: translateY(-16px) rotate(-2deg); }
+      100% { transform: translateY(0px) rotate(2deg); }
+    }
+    @keyframes floatLanternDrift {
+      0% { transform: translateY(110vh) translateX(0px) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.85; }
+      90% { opacity: 0.85; }
+      100% { transform: translateY(-15vh) translateX(30px) rotate(6deg); opacity: 0; }
+    }
+    .floating-lantern-slow1 {
+      animation: floatLantern1 6s infinite ease-in-out;
+    }
+    .floating-lantern-slow2 {
+      animation: floatLantern2 7.5s infinite ease-in-out;
+    }
+    .floating-drifter {
+      animation: floatLanternDrift 22s infinite linear;
+    }
+
+    @keyframes sparkleTwinkle {
+      0%, 100% { opacity: 0.15; transform: scale(0.7); }
+      50% { opacity: 0.85; transform: scale(1.15) rotate(15deg); }
+    }
+    .sparkle-star {
+      animation: sparkleTwinkle 3s infinite ease-in-out;
+    }
+
+        /* --- FULJHADI (SPARKLER) ANIMATIONS --- */
+    @keyframes fuljhadiFlicker {
+      0%, 100% {
+        filter: drop-shadow(0 0 10px #FFD700) drop-shadow(0 0 20px #FF6F00);
+        transform: scale(1) rotate(0deg);
+        opacity: 0.95;
+      }
+      25% {
+        filter: drop-shadow(0 0 16px #FFF) drop-shadow(0 0 28px #FFC700);
+        transform: scale(1.18) rotate(12deg);
+        opacity: 1;
+      }
+      50% {
+        filter: drop-shadow(0 0 8px #FF9100) drop-shadow(0 0 15px #FF3D00);
+        transform: scale(0.92) rotate(-8deg);
+        opacity: 0.85;
+      }
+      75% {
+        filter: drop-shadow(0 0 18px #FFEB3B) drop-shadow(0 0 32px #FFD700);
+        transform: scale(1.12) rotate(6deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes floatFuljhadi1 {
+      0%, 100% { transform: translateY(0px) rotate(-6deg); }
+      50% { transform: translateY(-24px) rotate(4deg); }
+    }
+
+    @keyframes floatFuljhadi2 {
+      0%, 100% { transform: translateY(0px) rotate(8deg); }
+      50% { transform: translateY(-18px) rotate(-4deg); }
+    }
+
+    @keyframes floatDiyaCenter {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-16px) rotate(3deg); }
+    }
+
+    .fuljhadi-sparks {
+      animation: fuljhadiFlicker 0.4s infinite alternate ease-in-out;
+      transform-origin: 32px 18px;
+    }
+
+    .floating-fuljhadi-1 {
+      animation: floatFuljhadi1 5.5s infinite ease-in-out;
+    }
+
+    .floating-fuljhadi-2 {
+      animation: floatFuljhadi2 6.8s infinite ease-in-out;
+    }
+
+    .floating-diya-mid {
+      animation: floatDiyaCenter 6s infinite ease-in-out;
+    }
+
+    .brutal-border {
+      border: 3px solid #000000;
+    }
+    .brutal-border-2 {
+      border: 2px solid #000000;
+    }
+
+    .brutal-btn {
+      border: 3px solid #000000;
+      box-shadow: 4px 4px 0px 0px #000000;
+      transition: all 0.15s ease-in-out;
+    }
+    .brutal-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px 0px #000000;
+    }
+    .brutal-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px 0px #000000;
+    }
+
+    .brutal-card {
+      border: 3px solid #000000;
+      box-shadow: 6px 6px 0px 0px #000000;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .brutal-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 8px 8px 0px 0px #000000;
+    }
+
+    .washi-tape {
+      background: rgba(255, 230, 0, 0.9);
+      border-left: 2px dashed rgba(0,0,0,0.25);
+      border-right: 2px dashed rgba(0,0,0,0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .washi-tape-pink {
+      background: rgba(233, 30, 99, 0.9);
+      border-left: 2px dashed rgba(0,0,0,0.25);
+      border-right: 2px dashed rgba(0,0,0,0.25);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    @keyframes flameFlicker {
+      0%, 100% { transform: scale(1) rotate(-1deg); filter: drop-shadow(0 0 16px #ff9800); }
+      25% { transform: scale(1.08, 1.15) rotate(2deg); filter: drop-shadow(0 0 24px #ff5722); }
+      50% { transform: scale(0.96, 0.94) rotate(-2deg); filter: drop-shadow(0 0 18px #ffeb3b); }
+      75% { transform: scale(1.05, 1.08) rotate(1deg); filter: drop-shadow(0 0 28px #ff9800); }
+    }
+    .flame-active {
+      animation: flameFlicker 1.8s infinite ease-in-out;
+      transform-origin: bottom center;
+    }
+
+    .sunburst-bg {
+      background: repeating-conic-gradient(
+        from 0deg,
+        #fef08a 0deg 15deg,
+        #fde047 15deg 30deg
+      );
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: 200%;
+      animation: marquee 24s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.85); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .modal-pop {
+      animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    @keyframes slideUpFade {
+      0% { opacity: 0; transform: translate(-50%, 20px); }
+      100% { opacity: 1; transform: translate(-50%, 0); }
+    }
+    .toast-anim {
+      animation: slideUpFade 0.3s ease-out forwards;
+    }
+
+    .page-section {
+      display: none;
+    }
+    .page-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-900 selection:bg-marigold selection:text-black flex flex-col justify-between">
+  <!-- LOCAL BACKGROUND AUDIO (WORKS AUTOMATICALLY WHEN song.mp3 IS IN THE SAME FOLDER) -->
+  <audio id="bgMusic" loop preload="auto"></audio>
+  
+
+  <!-- ========================================== -->
+  <!-- AMBIENT FESTIVE OVERLAY: FLOATING ELEMENTS TO THE SIDES ONLY -->
+  <!-- ========================================== -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+    
+    <!-- LEFT SIDE: Floating Sky Lantern (Kandil) -->
+    <div class="absolute top-20 left-1 sm:left-4 md:left-8 w-14 sm:w-20 md:w-24 floating-lantern-slow1 opacity-80">
+      <svg viewBox="0 0 100 160" class="w-full drop-shadow-[0_0_15px_rgba(255,199,0,0.7)]">
+        <line x1="50" y1="0" x2="50" y2="20" stroke="#000" stroke-width="2"/>
+        <polygon points="50,20 85,45 85,95 50,120 15,95 15,45" fill="#FFC700" stroke="#000" stroke-width="3"/>
+        <polygon points="50,30 75,50 75,90 50,110 25,90 25,50" fill="#D92344"/>
+        <circle cx="50" cy="70" r="16" fill="#FFF59D" filter="drop-shadow(0 0 8px #FFD600)"/>
+        <line x1="28" y1="120" x2="20" y2="155" stroke="#FF6F00" stroke-width="2"/>
+        <line x1="50" y1="120" x2="50" y2="160" stroke="#FFC700" stroke-width="2.5"/>
+        <line x1="72" y1="120" x2="80" y2="155" stroke="#D92344" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- LEFT SIDE: Floating Fuljhadi (Sparkler) -->
+    <div class="absolute top-72 left-2 sm:left-6 md:left-10 w-14 sm:w-18 floating-fuljhadi-1 opacity-85">
+      <svg viewBox="0 0 80 80" class="w-full">
+        <line x1="18" y1="72" x2="38" y2="32" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+        <g class="fuljhadi-sparks">
+          <circle cx="38" cy="32" r="4.5" fill="#FFFFFF"/>
+          <circle cx="38" cy="32" r="8" fill="#FFD700" opacity="0.6"/>
+          <line x1="38" y1="32" x2="38" y2="12" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="56" y2="18" stroke="#FFA000" stroke-width="2" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="58" y2="32" stroke="#FFD700" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="52" y2="48" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="22" y2="20" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+          <line x1="38" y1="32" x2="18" y2="34" stroke="#FFA000" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="38" cy="8" r="1.5" fill="#FFF"/>
+          <circle cx="62" cy="14" r="1.5" fill="#FFEB3B"/>
+          <circle cx="64" cy="32" r="1.5" fill="#FFF"/>
+          <circle cx="15" cy="16" r="1.5" fill="#FFEB3B"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- LEFT SIDE: Floating Glowing Diya -->
+    <div class="absolute bottom-32 left-2 sm:left-6 md:left-10 w-12 sm:w-14 floating-diya-mid opacity-80">
+      <div class="w-8 h-8 rounded-full bg-yellow-400/30 blur-md absolute -top-2 left-1"></div>
+      <svg viewBox="0 0 100 65" class="w-full drop-shadow-[0_0_10px_rgba(255,199,0,0.8)]">
+        <g class="flame-active">
+          <path d="M50 0 C60 18 70 28 50 35 C30 28 40 18 50 0 Z" fill="#FFD600"/>
+          <circle cx="50" cy="22" r="4.5" fill="#FFF"/>
+        </g>
+        <path d="M10 28 C25 60 75 60 90 28 Z" fill="#C84B31" stroke="#000" stroke-width="2.5"/>
+        <ellipse cx="50" cy="28" rx="40" ry="7" fill="#D96043" stroke="#000" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- RIGHT SIDE: Floating Sky Lantern (Kandil) -->
+    <div class="absolute top-28 right-1 sm:right-4 md:right-8 w-14 sm:w-20 md:w-24 floating-lantern-slow2 opacity-80">
+      <svg viewBox="0 0 100 160" class="w-full drop-shadow-[0_0_15px_rgba(233,30,99,0.7)]">
+        <line x1="50" y1="0" x2="50" y2="20" stroke="#000" stroke-width="2"/>
+        <polygon points="50,20 85,45 85,95 50,120 15,95 15,45" fill="#E91E63" stroke="#000" stroke-width="3"/>
+        <polygon points="50,30 75,50 75,90 50,110 25,90 25,50" fill="#FFC700"/>
+        <circle cx="50" cy="70" r="14" fill="#FFF" filter="drop-shadow(0 0 8px #FFC700)"/>
+        <line x1="30" y1="120" x2="22" y2="150" stroke="#FFC700" stroke-width="2"/>
+        <line x1="50" y1="120" x2="50" y2="158" stroke="#E91E63" stroke-width="2.5"/>
+        <line x1="70" y1="120" x2="78" y2="150" stroke="#FF6F00" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- RIGHT SIDE: Floating Fuljhadi (Sparkler) -->
+    <div class="absolute top-80 right-2 sm:right-6 md:right-10 w-14 sm:w-18 floating-fuljhadi-2 opacity-85">
+      <svg viewBox="0 0 80 80" class="w-full">
+        <line x1="62" y1="72" x2="42" y2="32" stroke="#374151" stroke-width="2.5" stroke-linecap="round"/>
+        <g class="fuljhadi-sparks" style="animation-delay: 0.25s;">
+          <circle cx="42" cy="32" r="4.5" fill="#FFFFFF"/>
+          <circle cx="42" cy="32" r="8" fill="#FFC107" opacity="0.6"/>
+          <line x1="42" y1="32" x2="42" y2="12" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+          <line x1="42" y1="32" x2="24" y2="18" stroke="#FFA000" stroke-width="2" stroke-linecap="round"/>
+          <line x1="42" y1="32" x2="22" y2="32" stroke="#FFD700" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="42" y1="32" x2="28" y2="48" stroke="#FF5722" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="42" y1="32" x2="58" y2="20" stroke="#FFD700" stroke-width="2" stroke-linecap="round"/>
+          <line x1="42" y1="32" x2="62" y2="34" stroke="#FFA000" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="42" cy="8" r="1.5" fill="#FFF"/>
+          <circle cx="18" cy="14" r="1.5" fill="#FFEB3B"/>
+          <circle cx="65" cy="16" r="1.5" fill="#FFEB3B"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- RIGHT SIDE: Floating Glowing Diya -->
+    <div class="absolute bottom-28 right-2 sm:right-6 md:right-10 w-12 sm:w-14 floating-diya-mid opacity-80" style="animation-delay: 2s;">
+      <div class="w-8 h-8 rounded-full bg-amber-400/30 blur-md absolute -top-2 left-1"></div>
+      <svg viewBox="0 0 100 65" class="w-full drop-shadow-[0_0_10px_rgba(255,160,0,0.8)]">
+        <g class="flame-active">
+          <path d="M50 0 C60 18 70 28 50 35 C30 28 40 18 50 0 Z" fill="#FFD600"/>
+          <circle cx="50" cy="22" r="4.5" fill="#FFF"/>
+        </g>
+        <path d="M10 28 C25 60 75 60 90 28 Z" fill="#B53B23" stroke="#000" stroke-width="2.5"/>
+        <ellipse cx="50" cy="28" rx="40" ry="7" fill="#C84B31" stroke="#000" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <!-- SIDE SPARKLES -->
+    <div class="absolute top-40 left-3 text-yellow-500 font-retro text-sm sparkle-star">✦</div>
+    <div class="absolute top-96 left-4 text-pink-500 font-retro text-sm sparkle-star" style="animation-delay: 1.5s;">✨</div>
+    <div class="absolute top-52 right-4 text-amber-500 font-retro text-xs sparkle-star" style="animation-delay: 1.1s;">✧</div>
+    <div class="absolute bottom-48 right-4 text-yellow-500 font-retro text-xs sparkle-star" style="animation-delay: 0.7s;">✦</div>
+
+  </div>
+
+  <!-- TOP MARQUEE BANNER -->
+  <div class="bg-black text-yellow-300 py-1.5 px-3 font-display text-[11px] sm:text-xs font-bold uppercase tracking-wider overflow-hidden border-b-2 border-black flex justify-between items-center z-50 relative w-full">
+    <div class="flex items-center gap-2 min-w-0">
+      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-ping shrink-0"></span>
+      <span class="truncate">DIL KI DIWALI 2026 · HOSTED BY SARVESH &amp; RISHI</span>
+    </div>
+    <div class="hidden sm:flex items-center gap-4 text-[11px] shrink-0">
+      <span>✨ 14TH NOVEMBER · 7:00 PM</span>
+      <span>•</span>
+      <span>🍸 COCKTAILS &amp; SNACKS ON US · BYOB &amp; POTLUCK APPRECIATED</span>
+      <span>•</span>
+      <span>🪔 VIP ENTRY</span>
+    </div>
+  </div>
+
+  <!-- STICKY 3-PAGE HEADER NAVIGATION (RESPONSIVE & OVERFLOW-SAFE) -->
+  <header class="sticky top-0 z-40 bg-cream/95 backdrop-blur-md border-b-4 border-black px-2.5 sm:px-4 py-2.5 sm:py-3 w-full">
+    <div class="max-w-5xl mx-auto flex items-center justify-between gap-1.5 sm:gap-4 w-full">
+      
+      <!-- Brand Logo Left with VIP Red Badge -->
+      <button type="button" class="nav-tab-btn flex items-center gap-1.5 sm:gap-2 text-left group shrink-0" data-page="1">
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-marigold brutal-border flex items-center justify-center font-retro text-base sm:text-lg shadow-brutal-sm group-hover:rotate-6 transition-transform">
+          🪔
+        </div>
+        <div class="flex items-center gap-1 leading-none">
+          <span class="font-display font-black text-sm sm:text-xl tracking-tight text-black">
+            DIWALI SCENE
+          </span>
+          <span class="inline-flex items-center justify-center text-[9px] sm:text-[10px] bg-crimson text-white px-1.5 py-0.5 rounded font-display font-black tracking-widest uppercase shadow-brutal-sm">
+            VIP
+          </span>
+        </div>
+      </button>
+
+      <!-- 3 Page Navigation Tabs Centered -->
+      <nav class="flex items-center justify-center gap-1 sm:gap-2 font-display text-[11px] sm:text-xs font-black mx-auto" aria-label="3-page navigation">
+        <button type="button" class="nav-tab-btn px-2 sm:px-4 py-1.5 sm:py-2 rounded-xl brutal-border-2 transition-all shadow-brutal-sm flex items-center gap-1 bg-yellow-300 ring-2 ring-black" data-page="1" id="tab1">
+          <span>01</span> <span class="hidden xs:inline">INTRO</span>
+        </button>
+        <button type="button" class="nav-tab-btn px-2 sm:px-4 py-1.5 sm:py-2 rounded-xl brutal-border-2 transition-all shadow-brutal-sm flex items-center gap-1 bg-white hover:bg-yellow-100" data-page="2" id="tab2">
+          <span>02</span> <span class="hidden xs:inline">DETAILS</span>
+        </button>
+        <button type="button" class="nav-tab-btn px-2 sm:px-4 py-1.5 sm:py-2 rounded-xl brutal-border-2 transition-all shadow-brutal-sm flex items-center gap-1 bg-white hover:bg-yellow-100 text-crimson" data-page="3" id="tab3">
+          <span>03</span> <span class="hidden xs:inline">RSVP</span>
+        </button>
+      </nav>
+
+      <!-- Controls: Sound & Desktop RSVP Status Right -->
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button id="soundToggleBtn" type="button" aria-label="Toggle festive sound" title="Festive Sound Toggle" class="w-9 h-9 rounded-xl bg-white brutal-border-2 hover:bg-yellow-100 flex items-center justify-center text-sm shadow-brutal-sm transition-transform active:scale-90 text-black">
+          🔊
+        </button>
+        <button type="button" class="nav-tab-btn hidden md:inline-flex px-3 sm:px-4 py-2 rounded-xl font-display font-bold text-xs brutal-border shadow-brutal-sm transition-all bg-crimson text-white hover:bg-crimson-dark" data-page="3" id="topRsvpBadge">
+          <span id="topRsvpBadgeText">RSVP NOW</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- FAIRY LIGHTS GARLAND ACROSS HEADER -->
+    <div class="fairy-string flex justify-around items-start pointer-events-none select-none" aria-hidden="true">
+      <div class="flex justify-between w-full max-w-5xl mx-auto px-2">
+        <svg class="fairy-bulb" style="--glow-color: #FFC700; animation-delay: 0.1s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#FFC700"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #D92344; animation-delay: 0.7s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#D92344"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #10B981; animation-delay: 1.3s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#10B981"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #0284C7; animation-delay: 0.4s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#0284C7"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #E91E63; animation-delay: 1.1s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#E91E63"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #FF6F00; animation-delay: 0.8s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#FF6F00"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #FFC700; animation-delay: 0.3s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#FFC700"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #D92344; animation-delay: 1.5s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#D92344"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #10B981; animation-delay: 0.9s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#10B981"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #0284C7; animation-delay: 0.6s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#0284C7"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #FF6F00; animation-delay: 1.2s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#FF6F00"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+        <svg class="fairy-bulb" style="--glow-color: #E91E63; animation-delay: 0.5s;" width="14" height="22" viewBox="0 0 14 22"><path d="M7 0 v5" stroke="#333" stroke-width="1.5"/><ellipse cx="7" cy="13" rx="5" ry="7" fill="#E91E63"/><ellipse cx="7" cy="13" rx="2" ry="3.5" fill="#FFF"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER FOR 3 PAGES -->
+  <main class="flex-grow max-w-5xl mx-auto w-full px-4 py-8">
+
+    <!-- ========================================== -->
+    <!-- PAGE 1: THE INTRO (WELCOME & DIYA LIGHTING) -->
+    <!-- ========================================== -->
+    <section id="page1" class="page-section active">
+      <div class="relative py-4 text-center flex flex-col items-center">
+        
+        <!-- Festive Header Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-300 brutal-border font-display text-xs font-black uppercase tracking-wider mb-6 shadow-brutal-sm">
+          <span>✨</span> DIL KI DIWALI · HOSTED BY SARVESH AND RISHI <span>✨</span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="text-4xl sm:text-6xl md:text-7xl font-display font-black text-black leading-none mb-4 uppercase tracking-tight">
+          DIL WAALI <span class="font-script text-crimson lowercase text-6xl sm:text-7xl md:text-8xl inline-block -rotate-6">Diwali</span>
+        </h1>
+
+        <p class="max-w-xl text-base sm:text-lg font-medium text-gray-800 mb-8 leading-relaxed">
+          "This Diwali, we're skipping the small talk and going straight to the <span class="font-bold underline decoration-marigold decoration-4">mithai</span>, <span class="font-bold underline decoration-hotpink decoration-4">masti</span>, and <span class="font-bold underline decoration-peacock decoration-4">main-character moments</span>."
+        </p>
+
+        <!-- Interactive Diya Canvas / Hero Visual Card -->
+        <div class="relative w-full max-w-md bg-amber-50 brutal-card rounded-3xl p-6 sm:p-8 mb-8 text-center overflow-hidden">
+          
+          <div class="washi-tape absolute -top-3 left-10 w-24 h-6 rotate-[-5deg] z-20"></div>
+          <div class="washi-tape-pink absolute -top-3 right-10 w-24 h-6 rotate-[6deg] z-20"></div>
+
+          <div class="relative py-2 flex flex-col items-center justify-center">
+            
+            <!-- Diya Graphic Container -->
+            <div id="diyaContainer" class="relative cursor-pointer group select-none transition-transform active:scale-95" title="Click to light the Diya!">
+              
+              <!-- Glow Aura -->
+              <div id="diyaGlow" class="absolute -inset-10 bg-yellow-400/30 rounded-full blur-2xl transition-opacity duration-700 opacity-0 pointer-events-none"></div>
+
+              <!-- Flame SVG Element -->
+              <div id="flameWrapper" class="relative z-10 w-16 h-24 mx-auto mb-[-8px] transition-all duration-500 opacity-20 scale-75 origin-bottom">
+                <svg viewBox="0 0 100 150" class="w-full h-full drop-shadow-lg">
+                  <path d="M50 0 C65 40 95 70 95 105 C95 130 75 150 50 150 C25 150 5 130 5 105 C5 70 35 40 50 0 Z" fill="url(#outerFlameGrad)" />
+                  <path d="M50 40 C60 65 75 85 75 110 C75 125 65 140 50 140 C35 140 25 125 25 110 C25 85 40 65 50 40 Z" fill="url(#innerFlameGrad)" />
+                  <circle cx="50" cy="115" r="14" fill="#FFFFFF" opacity="0.9" />
+                  <defs>
+                    <linearGradient id="outerFlameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#FF3D00" />
+                      <stop offset="50%" stop-color="#FF9100" />
+                      <stop offset="100%" stop-color="#FFD600" />
+                    </linearGradient>
+                    <linearGradient id="innerFlameGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#FFF59D" />
+                      <stop offset="100%" stop-color="#FFAB00" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              <!-- Terracotta Diya Base -->
+              <div class="relative z-10 w-48 sm:w-56 mx-auto">
+                <svg viewBox="0 0 200 90" class="w-full drop-shadow-md">
+                  <path d="M10 25 C25 75 175 75 190 25 C160 38 40 38 10 25 Z" fill="#C84B31" stroke="#000" stroke-width="4" />
+                  <ellipse cx="100" cy="25" rx="90" ry="15" fill="#D96043" stroke="#000" stroke-width="4" />
+                  <ellipse cx="100" cy="26" rx="72" ry="9" fill="#F59E0B" />
+                  <path d="M40 45 Q50 58 60 45 Q70 58 80 45 Q90 58 100 45 Q110 58 120 45 Q130 58 140 45 Q150 58 160 45" fill="none" stroke="#FFD700" stroke-width="3" stroke-linecap="round" />
+                  <circle cx="60" cy="54" r="2.5" fill="#FFF" />
+                  <circle cx="80" cy="54" r="2.5" fill="#FFF" />
+                  <circle cx="100" cy="54" r="2.5" fill="#FFF" />
+                  <circle cx="120" cy="54" r="2.5" fill="#FFF" />
+                  <circle cx="140" cy="54" r="2.5" fill="#FFF" />
+                </svg>
+              </div>
+
+              <div id="clickHint" class="mt-3 text-xs font-bold text-gray-500 uppercase tracking-wider flex items-center justify-center gap-1">
+                <span>👆</span> Tap diya to ignite your Shubh Aagman
+              </div>
+
+            </div>
+
+            <!-- Lighting Button -->
+            <div class="mt-6 w-full max-w-xs">
+              <button id="jalaoDiyaBtn" type="button" class="w-full py-4 px-6 rounded-2xl bg-marigold text-black font-display font-black text-base sm:text-lg brutal-btn flex items-center justify-center gap-2">
+                <span id="jalaoIcon">🪔</span>
+                <span id="jalaoText">JALAO DIYA →</span>
+              </button>
+              <p id="jalaoSubtext" class="text-xs font-semibold text-gray-600 mt-2">
+                Tap to confirm your presence &amp; unlock the scene!
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Next Page Navigation Action -->
+        <div class="flex flex-col sm:flex-row gap-3 w-full max-w-md">
+          <button type="button" class="nav-tab-btn flex-1 py-3.5 px-6 rounded-xl bg-yellow-300 text-black font-display font-black text-sm brutal-btn flex items-center justify-center gap-2" data-page="2">
+            <span>SEE PARTY DETAILS &amp; VENUE</span>
+            <span>→</span>
+          </button>
+          <button type="button" class="nav-tab-btn py-3.5 px-5 rounded-xl bg-white text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1" data-page="3">
+            <span>DIRECT RSVP</span>
+            <span>✍️</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PAGE 2: PARTY DETAILS (JASHAN-E-DAWAT HAVELI, 14TH NOV, GOREGAON) -->
+    <!-- ========================================== -->
+    <section id="page2" class="page-section">
+      <div class="py-4">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <div class="inline-block px-3 py-1 bg-peacock text-white rounded font-display text-xs font-bold uppercase tracking-widest mb-3">
+            PAGE 2 · OFFICIAL INVITATION DOSSIER
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-display font-black uppercase text-black tracking-tight">
+            THE SCENE: <span class="font-script text-crimson lowercase text-4xl sm:text-6xl -rotate-3 inline-block">Party Details</span>
+          </h2>
+          <p class="text-gray-700 font-medium mt-1">
+            Timing, venue, dress code, plus cocktails &amp; snacks on us (BYOB &amp; potluck also appreciated)!
+          </p>
+        </div>
+
+        <!-- 2x2 Grid of Key Details -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          
+          <!-- Card 1: TIMING & DATE (14th November 7:00 pm onwards) -->
+          <div class="bg-white brutal-card rounded-2xl p-6 relative">
+            <div class="washi-tape absolute -top-3 left-6 w-20 h-5 rotate-[-2deg]"></div>
+            <div class="flex items-center justify-between pb-3 border-b-2 border-black mb-4">
+              <span class="font-display font-black text-xs uppercase tracking-wider text-gray-500">WHEN</span>
+              <span class="text-xs font-mono font-bold bg-yellow-200 px-2 py-0.5 rounded brutal-border-2">SATURDAY</span>
+            </div>
+            <div class="text-2xl font-display font-black text-crimson mb-1">
+              14TH NOVEMBER 2026
+            </div>
+            <div class="text-base font-bold text-black mb-4">
+              7:00 PM Onwards · Till the last laddoo vanishes!
+            </div>
+            <button id="addToCalBtn" type="button" class="w-full py-2.5 px-4 rounded-xl bg-amber-100 text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1.5">
+              <span>📅</span> ADD TO GOOGLE / APPLE CALENDAR (.ICS)
+            </button>
+          </div>
+
+          <!-- Card 2: VENUE & ADDRESS (Will be shared by host after registration) -->
+          <div class="bg-white brutal-card rounded-2xl p-6 relative">
+            <div class="washi-tape-pink absolute -top-3 right-6 w-20 h-5 rotate-[3deg]"></div>
+            <div class="flex items-center justify-between pb-3 border-b-2 border-black mb-4">
+              <span class="font-display font-black text-xs uppercase tracking-wider text-gray-500">WHERE</span>
+              <span class="text-xs font-mono font-bold bg-pink-200 px-2 py-0.5 rounded brutal-border-2">VENUE</span>
+            </div>
+            <div class="text-xl sm:text-2xl font-display font-black text-black mb-1">
+              WILL BE SHARED BY HOST AFTER REGISTRATION
+            </div>
+            <div class="text-sm font-semibold text-gray-700 mb-4">
+              Exact address, location pin &amp; gate directions will be shared personally by host after registration.
+            </div>
+            <div class="grid grid-cols-2 gap-2">
+              <button id="locationModalBtn" type="button" class="py-2.5 px-3 rounded-xl bg-pink-100 text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1">
+                <span>📍</span> VENUE DETAILS
+              </button>
+              <button id="copyAddressBtn" type="button" class="py-2.5 px-3 rounded-xl bg-white text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1">
+                <span>📋</span> COPY NOTE
+              </button>
+            </div>
+          </div>
+
+          <!-- Card 3: SPECIAL NOTE - COCKTAILS, SNACKS, BYOB & POTLUCK -->
+          <div class="md:col-span-2 bg-yellow-300 brutal-card rounded-3xl p-6 sm:p-8 relative border-4 border-black shadow-brutal-lg">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4 pb-3 border-b-2 border-black">
+              <div class="flex items-center gap-3">
+                <span class="text-3xl">🍸 🍲 🍾</span>
+                <div>
+                  <h3 class="text-xl sm:text-2xl font-display font-black uppercase text-black tracking-tight">
+                    COCKTAILS &amp; SNACKS ON US!
+                  </h3>
+                  <div class="text-xs font-mono font-bold text-black uppercase">
+                    BYOB &amp; POTLUCK IS ALSO APPRECIATED (COMMUNITY EFFORTS)
+                  </div>
+                </div>
+              </div>
+              <span class="self-start sm:self-auto px-3.5 py-1 bg-black text-yellow-300 font-display font-black text-xs uppercase rounded-full tracking-wider">
+                COMMUNITY EFFORTS
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm font-medium text-black">
+              <div class="bg-white/90 p-4 rounded-2xl brutal-border-2">
+                <div class="font-display font-black text-sm uppercase text-crimson flex items-center gap-1.5 mb-1">
+                  <span>🍸</span> COCKTAILS &amp; BYOB
+                </div>
+                <p class="text-xs text-gray-800 leading-relaxed font-semibold">
+                  Cocktails, drinks, and mixers are on us! But BYOB is also warmly welcomed and appreciated if you'd like to bring your own favorite bottle (beer, wine, spirits, or fancy mixers) to fuel the party.
+                </p>
+              </div>
+
+              <div class="bg-white/90 p-4 rounded-2xl brutal-border-2">
+                <div class="font-display font-black text-sm uppercase text-emerald flex items-center gap-1.5 mb-1">
+                  <span>🍲</span> SNACKS &amp; POTLUCK
+                </div>
+                <p class="text-xs text-gray-800 leading-relaxed font-semibold">
+                  Hot starters and festive snacks are on us! Bringing a homemade dish, chaat, savory bites, or a box of your favorite mithai for the potluck table is also greatly appreciated (community efforts).
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Card 4: DRESS CODE (FIT CHECK WITH FUNKY FONTS & FIXED HARI MIRCH) -->
+          <div class="md:col-span-2 bg-white brutal-card rounded-3xl p-6 sm:p-8">
+            <div class="flex items-center justify-between pb-3 border-b-2 border-black mb-4">
+              <div>
+                <span class="font-display font-black text-sm uppercase tracking-wider text-black">
+                  FESTIVE DRESS CODE · FIT CHECK 👗
+                </span>
+                <p class="text-xs text-gray-600 font-semibold mt-0.5">
+                  Pick your color vibe! Traditional ethnic wear with maximum flair.
+                </p>
+              </div>
+              <span id="selectedFitBadge" class="text-xs font-funky tracking-wider bg-red-600 text-white px-3.5 py-1 rounded-full brutal-border-2 shadow-brutal-sm">
+                LAAL TAMATAR
+              </span>
+            </div>
+
+            <!-- 6 Funky Color Cards Grid (EXPLICIT INLINE COLORS TO PREVENT ANY WHITE BUGS) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 mb-6" id="colorGrid">
+              
+              <!-- 01 LAAL TAMATAR -->
+              <button type="button" class="color-card text-white rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 ring-4 ring-black" style="background-color: #D92344;" data-color="LAAL TAMATAR" data-hex="#D92344" data-tag="Ketchup-coded confidence.">
+                <span class="text-[10px] font-mono font-bold opacity-80">01</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-yellow-300">LAAL TAMATAR</div>
+                  <div class="font-script text-sm font-bold text-white mt-1 leading-tight">"Ketchup-coded confidence."</div>
+                </div>
+              </button>
+
+              <!-- 02 HALDI GANG -->
+              <button type="button" class="color-card text-black rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 opacity-80" style="background-color: #FFC700;" data-color="HALDI GANG" data-hex="#FFC700" data-tag="Glowing before the diyas do.">
+                <span class="text-[10px] font-mono font-bold opacity-80">02</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-black">HALDI GANG</div>
+                  <div class="font-script text-sm font-bold text-gray-900 mt-1 leading-tight">"Glowing before the diyas do."</div>
+                </div>
+              </button>
+
+              <!-- 03 HARI MIRCH (FIXED: RICH EMERALD GREEN BACKGROUND, CRISP WHITE & YELLOW TEXT, NEVER WHITE) -->
+              <button type="button" class="color-card text-white rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 opacity-80 border-3 border-black" style="background-color: #0C4A34;" data-color="HARI MIRCH" data-hex="#0C4A34" data-tag="Spicy. Sharp. Slightly dangerous.">
+                <span class="text-[10px] font-mono font-bold text-yellow-300">03</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-yellow-300">HARI MIRCH</div>
+                  <div class="font-script text-sm font-bold text-white mt-1 leading-tight">"Spicy. Sharp. Dangerous."</div>
+                </div>
+              </button>
+
+              <!-- 04 MOR PANKH -->
+              <button type="button" class="color-card text-white rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 opacity-80" style="background-color: #0284C7;" data-color="MOR PANKH" data-hex="#0284C7" data-tag="Peacock confidence, on loop.">
+                <span class="text-[10px] font-mono font-bold opacity-80">04</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-yellow-300">MOR PANKH</div>
+                  <div class="font-script text-sm font-bold text-white mt-1 leading-tight">"Peacock confidence, on loop."</div>
+                </div>
+              </button>
+
+              <!-- 05 GULABI SCENE -->
+              <button type="button" class="color-card text-white rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 opacity-80" style="background-color: #E91E63;" data-color="GULABI SCENE" data-hex="#E91E63" data-tag="Loud, lovely, a little extra.">
+                <span class="text-[10px] font-mono font-bold opacity-80">05</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-yellow-200">GULABI SCENE</div>
+                  <div class="font-script text-sm font-bold text-white mt-1 leading-tight">"Loud, lovely, extra."</div>
+                </div>
+              </button>
+
+              <!-- 06 ORANGE BARFI -->
+              <button type="button" class="color-card text-white rounded-2xl p-3.5 brutal-btn text-left flex flex-col justify-between h-32 opacity-80" style="background-color: #FF6F00;" data-color="ORANGE BARFI" data-hex="#FF6F00" data-tag="Sweet, saffron, sorted.">
+                <span class="text-[10px] font-mono font-bold opacity-80">06</span>
+                <div>
+                  <div class="font-funky text-sm uppercase leading-tight tracking-wider text-yellow-300">ORANGE BARFI</div>
+                  <div class="font-script text-sm font-bold text-white mt-1 leading-tight">"Sweet, saffron, sorted."</div>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- Next Page Action Button -->
+            <div class="flex flex-col sm:flex-row gap-3 pt-2">
+              <button type="button" class="nav-tab-btn py-3 px-6 rounded-xl bg-white text-black font-display font-bold text-xs brutal-btn" data-page="1">
+                <span>← BACK TO INTRO</span>
+              </button>
+              <button type="button" class="nav-tab-btn flex-1 py-3 px-6 rounded-xl bg-yellow-300 text-black font-display font-black text-sm brutal-btn flex items-center justify-center gap-2" data-page="3">
+                <span>PROCEED TO RSVP &amp; EMAIL RESERVATION</span>
+                <span>→</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- PAGE 3: RESERVATION & EMAIL RSVP (WITH WELCOME POPUP) -->
+    <!-- ========================================== -->
+    <section id="page3" class="page-section">
+      <div class="py-4">
+        
+        <!-- Header -->
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <div class="inline-block px-3 py-1 bg-crimson text-white rounded font-display text-xs font-bold uppercase tracking-widest mb-3">
+            PAGE 3 · SHUBH AAGMAN RESERVATION
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-display font-black uppercase text-black tracking-tight">
+            RESERVE: <span class="font-script text-crimson lowercase text-4xl sm:text-6xl -rotate-3 inline-block">Tu Aaja!</span>
+          </h2>
+          <p class="text-gray-700 font-medium mt-1">
+            Send your reservation with name, phone &amp; email. Submitting will launch your official Welcome Card!
+          </p>
+        </div>
+
+        <!-- Reservation Form Card -->
+        <div class="max-w-xl mx-auto bg-white brutal-card rounded-3xl p-6 sm:p-8 relative">
+          
+          <div class="washi-tape absolute -top-3 left-10 w-28 h-6 rotate-[-3deg]"></div>
+          
+          <div class="flex items-center justify-between pb-4 border-b-2 border-black mb-6">
+            <span class="font-display font-extrabold text-sm uppercase text-black">
+              ENTRY PASS RESERVATION FORM
+            </span>
+            <span class="text-xs font-mono font-bold bg-yellow-300 px-2.5 py-1 rounded brutal-border-2">
+              HAVELI VIP
+            </span>
+          </div>
+
+          <form id="rsvpForm" class="space-y-4">
+            
+            <!-- Name Input -->
+            <div>
+              <label for="guestNameInput" class="block font-display font-black text-xs uppercase tracking-wider text-gray-800 mb-1.5">
+                FULL NAME <span class="text-crimson">*</span>
+              </label>
+              <input id="guestNameInput" type="text" required placeholder="E.g. Rahul Sharma" class="w-full px-4 py-3 rounded-xl brutal-border font-sans font-medium text-black focus:outline-none focus:ring-4 focus:ring-yellow-300">
+            </div>
+
+            <!-- Phone Number Input -->
+            <div>
+              <label for="guestPhoneInput" class="block font-display font-black text-xs uppercase tracking-wider text-gray-800 mb-1.5">
+                PHONE NUMBER <span class="text-crimson">*</span>
+              </label>
+              <input id="guestPhoneInput" type="tel" required placeholder="E.g. +91 98765 43210" class="w-full px-4 py-3 rounded-xl brutal-border font-sans font-medium text-black focus:outline-none focus:ring-4 focus:ring-yellow-300">
+            </div>
+
+            <!-- Email Input -->
+            <div>
+              <label for="guestEmailInput" class="block font-display font-black text-xs uppercase tracking-wider text-gray-800 mb-1.5">
+                EMAIL ADDRESS <span class="text-crimson">*</span>
+              </label>
+              <input id="guestEmailInput" type="email" required placeholder="E.g. rahul@example.com" class="w-full px-4 py-3 rounded-xl brutal-border font-sans font-medium text-black focus:outline-none focus:ring-4 focus:ring-yellow-300">
+            </div>
+
+            <!-- Potluck / BYOB Commitment Note -->
+            <div>
+              <label for="potluckItemInput" class="block font-display font-black text-xs uppercase tracking-wider text-gray-800 mb-1.5">
+                WHAT ARE YOU BRINGING? (BYOB / POTLUCK - OPTIONAL)
+              </label>
+              <input id="potluckItemInput" type="text" placeholder="Cocktails &amp; snacks on us! Or e.g. Kaju Katli, Gin, etc." class="w-full px-4 py-3 rounded-xl brutal-border font-sans text-sm text-black focus:outline-none focus:ring-4 focus:ring-yellow-300">
+              <p class="text-[11px] text-gray-600 font-semibold mt-1">
+                Cocktails &amp; snacks on us, but BYOB and potluck is also appreciated (community efforts)!
+              </p>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="pt-2">
+              <button type="submit" id="submitRsvpBtn" class="w-full py-4 px-6 rounded-2xl bg-yellow-300 text-black font-display font-black text-base brutal-btn flex items-center justify-center gap-2">
+                <span>✨</span>
+                <span>CONFIRM RSVP &amp; SEND RESERVATION</span>
+                <span>✨</span>
+              </button>
+              <p class="text-[11px] text-gray-600 font-semibold text-center mt-2 flex items-center justify-center gap-1.5 flex-wrap">
+                <span>💬</span>
+                <span>Instant 1-Tap RSVP to WhatsApp <strong class="text-emerald-700 font-mono">+91 9372564362</strong>!</span>
+              </p>
+            </div>
+
+          </form>
+
+          <!-- Back Button -->
+          <div class="mt-4 pt-4 border-t-2 border-black flex justify-between items-center text-xs">
+            <button type="button" class="nav-tab-btn font-display font-bold text-gray-600 hover:text-black uppercase" data-page="2">
+              ← Back to Party Details
+            </button>
+            <span class="font-mono text-gray-500">Instant Welcome Card Guaranteed</span>
+          </div>
+
+        </div>
+
+        <!-- Confirmed Card Preview (Shown once RSVP is filled) -->
+        <div id="confirmedCardContainer" class="max-w-xl mx-auto mt-6 hidden">
+          <div class="bg-emerald-100 brutal-card rounded-2xl p-5 border-2 border-emerald-800 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <div class="font-display font-black text-xs text-emerald-900 uppercase">
+                RSVP IS CONFIRMED! ✓
+              </div>
+              <div id="confirmedSummaryText" class="text-xs font-semibold text-emerald-800 mt-0.5">
+                Reservation locked for Rahul Sharma (+91 98765 43210).
+              </div>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto">
+              <button id="quickWhatsappBtn" type="button" class="flex-1 sm:flex-none py-2 px-3 rounded-xl bg-[#25D366] text-white font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1.5 hover:bg-[#20ba59]">
+                <span>💬</span> WHATSAPP RSVP
+              </button>
+              <button id="reopenWelcomeBtn" type="button" class="flex-1 sm:flex-none py-2 px-3 rounded-xl bg-white text-black font-display font-bold text-xs brutal-btn whitespace-nowrap">
+                VIEW CARD
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MARQUEE FOOTER TICKER -->
+  <div class="bg-marigold py-2.5 border-y-4 border-black overflow-hidden font-display font-black text-sm uppercase tracking-wider text-black select-none max-w-full w-full">
+    <div class="animate-marquee whitespace-nowrap flex gap-8 items-center">
+      <span>✦ DIL KI DIWALI</span>
+      <span>✦ HOSTED BY SARVESH &amp; RISHI</span>
+      <span>✦ 14TH NOVEMBER 7:00 PM</span>
+      <span>✦ VENUE SHARED BY HOST AFTER REGISTRATION</span>
+      <span>✦ COCKTAILS &amp; SNACKS ON US</span> <span>✦ BYOB &amp; POTLUCK APPRECIATED (COMMUNITY EFFORTS)</span>
+      <span>✦ GREAT FITS</span>
+      <span>✦ QUESTIONABLE DANCE MOVES</span>
+      <!-- Repeated for seamless loop -->
+      <span>✦ DIL KI DIWALI</span>
+      <span>✦ HOSTED BY SARVESH &amp; RISHI</span>
+      <span>✦ 14TH NOVEMBER 7:00 PM</span>
+      <span>✦ VENUE SHARED BY HOST AFTER REGISTRATION</span>
+      <span>✦ COCKTAILS &amp; SNACKS ON US</span> <span>✦ BYOB &amp; POTLUCK APPRECIATED (COMMUNITY EFFORTS)</span>
+      <span>✦ GREAT FITS</span>
+      <span>✦ QUESTIONABLE DANCE MOVES</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-black text-white py-8 px-4 text-center">
+    <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-gray-400">
+      <div class="flex items-center gap-2">
+        <span class="text-yellow-300 font-display font-black text-base">DIL KI DIWALI</span>
+        <span>· Hosted by Sarvesh and Rishi</span>
+      </div>
+      <div>Dil Ki Diwali · Venue shared by host after registration · 2026</div>
+      <button type="button" class="nav-tab-btn text-yellow-300 hover:underline uppercase font-bold" data-page="1">
+        Back to Start ↑
+      </button>
+    </div>
+  </footer>
+
+  <!-- ========================================== -->
+  <!-- MODAL: WELCOME POPUP (PERSONALIZED & UPDATED) -->
+  <!-- ========================================== -->
+  <div id="welcomeModal" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4 hidden backdrop-blur-md" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="bg-white brutal-card rounded-3xl max-w-lg w-full p-6 sm:p-8 relative modal-pop border-4 border-black">
+      
+      <!-- Top tape ribbons -->
+      <div class="washi-tape absolute -top-3 left-10 w-24 h-6 rotate-[-4deg] z-20"></div>
+      <div class="washi-tape-pink absolute -top-3 right-10 w-24 h-6 rotate-[5deg] z-20"></div>
+
+      <!-- Close Button -->
+      <button id="closeWelcomeModalBtn" type="button" aria-label="Close welcome popup" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 brutal-border-2 flex items-center justify-center font-bold text-sm hover:bg-red-200">
+        ✕
+      </button>
+
+      <!-- Welcome Content -->
+      <div class="text-center pt-2">
+        
+        <div class="w-16 h-16 rounded-2xl bg-yellow-300 brutal-border flex items-center justify-center text-3xl mx-auto mb-3 shadow-brutal-sm">
+          🪔
+        </div>
+
+        <div class="inline-block px-3 py-1 bg-emerald text-white rounded font-display text-xs font-black uppercase tracking-wider mb-2">
+          RESERVATION CONFIRMED ✓
+        </div>
+
+        <h3 id="welcomeTitle" class="text-2xl sm:text-3xl font-display font-black uppercase text-black leading-tight mb-1">
+          WELCOME TO THE SCENE! 🎉
+        </h3>
+        
+        <p class="font-script text-2xl text-crimson font-bold mb-4">
+          "Aapka Shubh Aagman officially confirm ho gaya hai!"
+        </p>
+
+        <!-- Personalized Ticket Details Card -->
+        <div class="bg-amber-50 rounded-2xl brutal-border p-4 text-left text-xs font-sans space-y-2 mb-6">
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">GUEST NAME</span>
+            <span id="modalGuestName" class="font-bold text-black uppercase">RAHUL SHARMA</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">EVENT &amp; HOSTS</span>
+            <span class="font-bold text-black uppercase">DIL KI DIWALI · SARVESH &amp; RISHI</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">DATE &amp; TIME</span>
+            <span class="font-bold text-black">14 Nov 2026, 7:00 PM</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">VENUE</span>
+            <span class="font-bold text-black">Will be shared by host after registration</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">PHONE</span>
+            <span id="modalGuestPhone" class="font-bold text-black">+91 98765 43210</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">EMAIL</span>
+            <span id="modalGuestEmail" class="font-bold text-black">rahul@example.com</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">FIT CHECK COLOR</span>
+            <span id="modalGuestColor" class="font-bold text-crimson">LAAL TAMATAR</span>
+          </div>
+          <div class="flex justify-between border-b border-gray-300 pb-1.5">
+            <span class="font-display font-bold text-gray-500 uppercase">BYOB / POTLUCK (COMMUNITY EFFORTS)</span>
+            <span id="modalGuestPotluck" class="font-bold text-emerald-800">Kaju Katli + Gin</span>
+          </div>
+          <div class="flex justify-between items-center">
+            <span class="font-display font-bold text-gray-500 uppercase">WHATSAPP RSVP</span>
+            <span class="font-mono font-bold text-xs text-right text-emerald-800">+91 9372564362</span>
+          </div>
+        </div>
+
+        <!-- Action buttons inside modal -->
+        <div class="space-y-2.5">
+          <!-- WhatsApp RSVP Action Button (Direct to 9372564362) -->
+          <button id="sendWhatsappBtn" type="button" class="w-full py-3.5 px-4 rounded-xl bg-[#25D366] text-white font-display font-black text-xs sm:text-sm brutal-btn flex items-center justify-center gap-2 hover:bg-[#20ba59] shadow-brutal-sm">
+            <svg class="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>SEND RSVP ON WHATSAPP (+91 9372564362)</span>
+          </button>
+
+          <!-- Email & Calendar Options -->
+          <div class="grid grid-cols-2 gap-2.5">
+            <button id="sendEmailActionBtn" type="button" class="py-2.5 px-3 rounded-xl bg-yellow-300 text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1">
+              <span>📧</span> EMAIL APP
+            </button>
+            <button id="modalCalBtn" type="button" class="py-2.5 px-3 rounded-xl bg-white text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1">
+              <span>📅</span> CALENDAR (.ICS)
+            </button>
+          </div>
+
+          <button id="modalCopyBtn" type="button" class="w-full py-2 px-3 rounded-xl bg-pink-100 text-black font-display font-bold text-xs brutal-btn flex items-center justify-center gap-1">
+            <span>📋</span> COPY RSVP DETAILS TO CLIPBOARD
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MODAL: LOCATION & DIRECTIONS (GOREGAON) -->
+  <div id="locationModal" class="fixed inset-0 bg-black/75 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="locationTitle">
+    <div class="bg-amber-50 brutal-card rounded-3xl max-w-md w-full p-6 relative">
+      <div class="flex items-center justify-between mb-4 border-b-2 border-black pb-3">
+        <h3 id="locationTitle" class="font-display font-black text-lg uppercase text-black flex items-center gap-2">
+          <span>📍</span> LOCATION DIKHAO
+        </h3>
+        <button id="closeLocationModalBtn" type="button" aria-label="Close location modal" class="w-8 h-8 rounded-full bg-white brutal-border-2 flex items-center justify-center font-bold text-sm hover:bg-red-200">
+          ✕
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs font-sans">
+        <div class="bg-white p-4 rounded-xl brutal-border-2">
+          <div class="font-display font-bold text-gray-500 uppercase text-[10px]">VENUE &amp; ADDRESS</div>
+          <div class="font-bold text-sm text-black mt-0.5">Will be shared by host after registration</div>
+          <div class="text-gray-700 mt-1 font-semibold">Exact location pin &amp; directions will be sent directly by the host once registered.</div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl brutal-border-2">
+          <div class="font-display font-bold text-gray-500 uppercase text-[10px]">EVENT &amp; HOSTS</div>
+          <div class="font-bold text-black mt-0.5">Dil Ki Diwali · Hosted by Sarvesh and Rishi</div>
+          <div class="text-gray-600 mt-1">Exclusive guest list entry. Check-in upon arrival will verify your confirmed RSVP.</div>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl brutal-border-2">
+          <div class="font-display font-bold text-gray-500 uppercase text-[10px]">PARKING SITUATION</div>
+          <div class="font-bold text-emerald-800 mt-0.5">Valet &amp; guest parking will be arranged at the venue.</div>
+          <div class="text-gray-600 mt-1">Carpooling with your festive gang is encouraged!</div>
+        </div>
+
+        <button id="modalCopyAddressBtn" type="button" class="w-full py-3 rounded-xl bg-yellow-300 text-black font-display font-bold text-xs brutal-btn">
+          COPY VENUE NOTE TO CLIPBOARD 📋
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING TOAST NOTIFICATION -->
+  <div id="toastNotification" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-black text-yellow-300 font-display font-bold text-xs px-5 py-3 rounded-2xl brutal-border-2 border-yellow-400 shadow-brutal z-50 hidden toast-anim flex items-center gap-2">
+    <span id="toastIcon">✨</span>
+    <span id="toastMessage">Success!</span>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // --- STATE MANAGEMENT ---
+    const state = {
+      currentPage: 1,
+      isDiyaLit: false,
+      hasRsvpd: false,
+      guestName: '',
+      guestPhone: '',
+      guestEmail: '',
+      potluckItem: '',
+      selectedColor: 'LAAL TAMATAR',
+      selectedHex: '#D92344',
+      selectedVibe: 'Ketchup-coded confidence.',
+      soundEnabled: true,
+      audioCtx: null
+    };
+
+    // --- PAGE NAVIGATION CONTROLLER ---
+    function switchPage(pageNumber) {
+      playSound('thud');
+      state.currentPage = pageNumber;
+
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      const activeSec = document.getElementById(`page${pageNumber}`);
+      if (activeSec) activeSec.classList.add('active');
+
+      document.querySelectorAll('.nav-tab-btn[data-page]').forEach(btn => {
+        const p = parseInt(btn.getAttribute('data-page'));
+        if (btn.id && btn.id.startsWith('tab')) {
+          if (p === pageNumber) {
+            btn.classList.remove('bg-white');
+            btn.classList.add('bg-yellow-300', 'ring-2', 'ring-black');
+          } else {
+            btn.classList.remove('bg-yellow-300', 'ring-2', 'ring-black');
+            btn.classList.add('bg-white');
+          }
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('.nav-tab-btn[data-page]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetPage = parseInt(btn.getAttribute('data-page'));
+        if (targetPage) switchPage(targetPage);
+      });
+    });
+
+    // --- WEB AUDIO SYNTHESIZER ---
+    function getAudioContext() {
+      if (!state.audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) state.audioCtx = new AudioContext();
+      }
+      if (state.audioCtx && state.audioCtx.state === 'suspended') {
+        state.audioCtx.resume();
+      }
+      return state.audioCtx;
+    }
+
+    function playSound(type) {
+      if (!state.soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+
+        if (type === 'spark') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(300, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.35);
+          gain.gain.setValueAtTime(0.3, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        } else if (type === 'chime') {
+          const freqs = [523.25, 659.25, 783.99, 1046.50];
+          freqs.forEach((f, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(f, ctx.currentTime + i * 0.08);
+            gain.gain.setValueAtTime(0.25, ctx.currentTime + i * 0.08);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.08 + 0.6);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + i * 0.08);
+            osc.stop(ctx.currentTime + i * 0.08 + 0.6);
+          });
+        } else if (type === 'thud') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(120, ctx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(30, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.3, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.15);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.15);
+        }
+      } catch (e) {
+        console.warn('Audio unavailable:', e);
+      }
+    }
+
+    // --- TOAST HELPER ---
+    let toastTimeout;
+    function showToast(message, icon = '✨') {
+      const toast = document.getElementById('toastNotification');
+      const msg = document.getElementById('toastMessage');
+      const ico = document.getElementById('toastIcon');
+      if (!toast || !msg || !ico) return;
+
+      ico.textContent = icon;
+      msg.textContent = message;
+      toast.classList.remove('hidden');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3000);
+    }
+
+    // --- DIYA LIGHTING LOGIC (PAGE 1) ---
+    const jalaoBtn = document.getElementById('jalaoDiyaBtn');
+    const diyaContainer = document.getElementById('diyaContainer');
+    const flameWrapper = document.getElementById('flameWrapper');
+    const diyaGlow = document.getElementById('diyaGlow');
+    const jalaoText = document.getElementById('jalaoText');
+    const jalaoIcon = document.getElementById('jalaoIcon');
+    const jalaoSubtext = document.getElementById('jalaoSubtext');
+    const clickHint = document.getElementById('clickHint');
+
+    function igniteDiya() {
+      if (state.isDiyaLit) {
+        showToast('Diya is already glowing brightly! 🪔');
+        return;
+      }
+      state.isDiyaLit = true;
+      playSound('spark');
+
+      flameWrapper.classList.remove('opacity-20', 'scale-75');
+      flameWrapper.classList.add('opacity-100', 'scale-100', 'flame-active');
+      diyaGlow.classList.remove('opacity-0');
+      diyaGlow.classList.add('opacity-100');
+
+      jalaoText.textContent = 'JAL GAYA! 🪔';
+      jalaoIcon.textContent = '🔥';
+      jalaoBtn.classList.remove('bg-marigold');
+      jalaoBtn.classList.add('bg-yellow-400');
+      jalaoSubtext.textContent = 'Shubh Aagman ignited! Proceed to details.';
+      clickHint.innerHTML = '<span>✨</span> Shubh Deepavali! Diya lit. <span>✨</span>';
+      clickHint.classList.add('text-crimson');
+
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#FFC700', '#D92344', '#E91E63', '#0C4A34']
+        });
+      }
+
+      showToast('Diya Lit! Shubh Aagman confirmed 🪔');
+    }
+
+    if (jalaoBtn) jalaoBtn.addEventListener('click', igniteDiya);
+    if (diyaContainer) diyaContainer.addEventListener('click', igniteDiya);
+
+    // --- DRESS CODE COLOR SELECTION (PAGE 2) ---
+    const colorCards = document.querySelectorAll('.color-card');
+    const selectedFitBadge = document.getElementById('selectedFitBadge');
+
+    colorCards.forEach(card => {
+      card.addEventListener('click', () => {
+        playSound('thud');
+        colorCards.forEach(c => {
+          c.classList.remove('ring-4', 'ring-black');
+          c.classList.add('opacity-80');
+        });
+        card.classList.add('ring-4', 'ring-black');
+        card.classList.remove('opacity-80');
+
+        state.selectedColor = card.getAttribute('data-color');
+        state.selectedHex = card.getAttribute('data-hex');
+        state.selectedVibe = card.getAttribute('data-tag');
+
+        if (selectedFitBadge) {
+          selectedFitBadge.textContent = state.selectedColor;
+          selectedFitBadge.style.backgroundColor = state.selectedHex;
+          selectedFitBadge.style.color = (state.selectedColor === 'HALDI GANG') ? '#000000' : '#FFFFFF';
+        }
+
+        showToast(`Fit locked: ${state.selectedColor} 👗`, '👗');
+      });
+    });
+
+    // --- RSVP FORM & WELCOME POPUP (PAGE 3) ---
+    const rsvpForm = document.getElementById('rsvpForm');
+    const guestNameInput = document.getElementById('guestNameInput');
+    const guestPhoneInput = document.getElementById('guestPhoneInput');
+    const guestEmailInput = document.getElementById('guestEmailInput');
+    const potluckItemInput = document.getElementById('potluckItemInput');
+
+    const welcomeModal = document.getElementById('welcomeModal');
+    const closeWelcomeModalBtn = document.getElementById('closeWelcomeModalBtn');
+    const modalGuestName = document.getElementById('modalGuestName');
+    const modalGuestPhone = document.getElementById('modalGuestPhone');
+    const modalGuestEmail = document.getElementById('modalGuestEmail');
+    const modalGuestColor = document.getElementById('modalGuestColor');
+    const modalGuestPotluck = document.getElementById('modalGuestPotluck');
+    const sendEmailActionBtn = document.getElementById('sendEmailActionBtn');
+
+    const topRsvpBadge = document.getElementById('topRsvpBadge');
+    const topRsvpBadgeText = document.getElementById('topRsvpBadgeText');
+    const confirmedCardContainer = document.getElementById('confirmedCardContainer');
+    const confirmedSummaryText = document.getElementById('confirmedSummaryText');
+    const reopenWelcomeBtn = document.getElementById('reopenWelcomeBtn');
+
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        playSound('chime');
+
+        state.guestName = guestNameInput.value.trim();
+        state.guestPhone = guestPhoneInput.value.trim();
+        state.guestEmail = guestEmailInput.value.trim();
+        state.potluckItem = potluckItemInput.value.trim() || 'Cocktails & snacks on us! (BYOB / potluck welcome)';
+        state.hasRsvpd = true;
+
+        modalGuestName.textContent = state.guestName.toUpperCase();
+        modalGuestPhone.textContent = state.guestPhone;
+        modalGuestEmail.textContent = state.guestEmail;
+        modalGuestColor.textContent = `${state.selectedColor} (${state.selectedVibe})`;
+        modalGuestPotluck.textContent = state.potluckItem;
+
+        topRsvpBadgeText.textContent = 'CONFIRMED ✓';
+        topRsvpBadge.classList.remove('bg-crimson');
+        topRsvpBadge.classList.add('bg-emerald-600');
+
+        confirmedCardContainer.classList.remove('hidden');
+        confirmedSummaryText.textContent = `Reservation locked for ${state.guestName} (${state.guestPhone}). Dil Ki Diwali hosted by Sarvesh & Rishi. Venue will be shared by host after registration.`;
+
+        welcomeModal.classList.remove('hidden');
+
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 100,
+            spread: 90,
+            origin: { y: 0.5 },
+            colors: ['#FFC700', '#D92344', '#0284C7', '#FF6F00']
+          });
+        }
+
+        showToast(`Welcome ${state.guestName}! RSVP Confirmed 🎉`, '🎉');
+      });
+    }
+
+    if (closeWelcomeModalBtn) {
+      closeWelcomeModalBtn.addEventListener('click', () => {
+        welcomeModal.classList.add('hidden');
+      });
+    }
+
+    if (welcomeModal) {
+      welcomeModal.addEventListener('click', (e) => {
+        if (e.target === welcomeModal) welcomeModal.classList.add('hidden');
+      });
+    }
+
+    if (reopenWelcomeBtn) {
+      reopenWelcomeBtn.addEventListener('click', () => {
+        welcomeModal.classList.remove('hidden');
+      });
+    }
+
+    // --- RSVP RECIPIENT SETTINGS ---
+    const hostWhatsappNumber = '919372564362'; // Destination WhatsApp: 9372564362
+
+    function getRsvpWhatsappMessage() {
+      const msg = `🪔 *DIL KI DIWALI 2026 · RSVP CONFIRMATION* 🪔\n\nNamaste Sarvesh & Rishi!\nI am officially confirming my presence for Dil Ki Diwali on Saturday, 14th November 2026, 7:00 PM onwards! ✨\n\n👑 *Hosted by:* Sarvesh and Rishi\n📍 *Venue:* Will be shared by host after registration\n\n📋 *My Reservation Details:*\n• *Full Name:* ${state.guestName || 'Guest'}\n• *Phone:* ${state.guestPhone || 'N/A'}\n• *Email:* ${state.guestEmail || 'N/A'}\n• *Fit Check Color:* ${state.selectedColor} (${state.selectedVibe})\n• *BYOB / Potluck Contribution:* ${state.potluckItem || 'Desi Snacks & Drinks'}\n\nCan't wait to celebrate! 🍾🎉`;
+      return encodeURIComponent(msg);
+    }
+
+    function openWhatsappRsvp() {
+      playSound('chime');
+      const encodedMsg = getRsvpWhatsappMessage();
+      const waUrl = `https://api.whatsapp.com/send?phone=${hostWhatsappNumber}&text=${encodedMsg}`;
+      window.open(waUrl, '_blank');
+      showToast('Opening WhatsApp with RSVP for +91 9372564362! 💬', '💬');
+    }
+
+    const sendWhatsappBtn = document.getElementById('sendWhatsappBtn');
+    if (sendWhatsappBtn) {
+      sendWhatsappBtn.addEventListener('click', openWhatsappRsvp);
+    }
+
+    const quickWhatsappBtn = document.getElementById('quickWhatsappBtn');
+    if (quickWhatsappBtn) {
+      quickWhatsappBtn.addEventListener('click', openWhatsappRsvp);
+    }
+
+    // Send Email Action (Clean subject & body without personal host names)
+    function getRsvpEmailContent() {
+      const subject = `Dil Ki Diwali RSVP: ${state.guestName || 'Guest'} Confirmed! - Hosted by Sarvesh & Rishi`;
+      const body = `Namaste Sarvesh & Rishi!\n\nI am thrilled to confirm my RSVP for Dil Ki Diwali (Hosted by Sarvesh and Rishi) on Saturday, 14th November 2026, 7:00 PM onwards!\n\nHere are my reservation details:\n• Full Name: ${state.guestName}\n• Phone: ${state.guestPhone}\n• Email: ${state.guestEmail}\n• Fit Check Color: ${state.selectedColor} (${state.selectedVibe})\n• BYOB / Potluck Contribution: ${state.potluckItem}\n• Venue: Will be shared by host after registration\n\nCan't wait for the celebration!\n\nWarm regards,\n${state.guestName}`;
+      return { subject, body };
+    }
+
+    // sendEmailActionBtn already declared
+    if (sendEmailActionBtn) {
+      sendEmailActionBtn.addEventListener('click', () => {
+        playSound('chime');
+        const { subject, body } = getRsvpEmailContent();
+        window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        showToast('Email app opened with pre-filled RSVP! 📧', '📧');
+      });
+    }
+
+    // --- ADD TO CALENDAR (.ICS DOWNLOAD - 14TH NOV, 7PM - HOSTED BY SARVESH & RISHI) ---
+    function downloadCalendarIcs() {
+      playSound('thud');
+      const icsData = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//Diwali Scene//Sarvesh and Rishi//EN',
+        'CALSCALE:GREGORIAN',
+        'METHOD:PUBLISH',
+        'BEGIN:VEVENT',
+        'UID:dil-ki-diwali-20261114@diwaliscene.com',
+        'DTSTAMP:20261027T120000Z',
+        'DTSTART:20261114T133000Z', // 7:00 PM IST (UTC+5:30 is 13:30Z)
+        'DTEND:20261114T203000Z',   // 2:00 AM IST next day
+        'SUMMARY:DIL KI DIWALI · Hosted by Sarvesh & Rishi',
+        'DESCRIPTION:Dil Ki Diwali hosted by Sarvesh and Rishi. BYOB & Potluck scene! Good food, great fits, questionable dance moves. Venue address will be shared by host after registration.',
+        'LOCATION:Will be shared by host after registration',
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.setAttribute('download', 'Diwali_Party_Jashan_e_Dawat_2026.ics');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      showToast('Calendar invite (.ics) downloaded! 📅', '📅');
+    }
+
+    const addToCalBtn = document.getElementById('addToCalBtn');
+    const modalCalBtn = document.getElementById('modalCalBtn');
+    if (addToCalBtn) addToCalBtn.addEventListener('click', downloadCalendarIcs);
+    if (modalCalBtn) modalCalBtn.addEventListener('click', downloadCalendarIcs);
+
+    // --- CLIPBOARD ACTIONS ---
+    function copyToClipboard(text, successMsg = 'Copied to clipboard!') {
+      playSound('chime');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => showToast(successMsg, '📋')).catch(() => fallbackCopy(text, successMsg));
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      try {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast(successMsg, '📋');
+      } catch (err) {
+        showToast('Could not copy automatically');
+      }
+    }
+
+    const copyAddressBtn = document.getElementById('copyAddressBtn');
+    const modalCopyAddressBtn = document.getElementById('modalCopyAddressBtn');
+    const modalCopyBtn = document.getElementById('modalCopyBtn');
+
+    const addressText = "Will be shared by host after registration";
+    if (copyAddressBtn) copyAddressBtn.addEventListener('click', () => copyToClipboard(addressText, 'Address note copied! 📍'));
+    if (modalCopyAddressBtn) modalCopyAddressBtn.addEventListener('click', () => copyToClipboard(addressText, 'Address note copied! 📍'));
+
+    if (modalCopyBtn) {
+      modalCopyBtn.addEventListener('click', () => {
+        const details = `🪔 Diwali Party Pass: ${state.guestName}\n👑 Event: Dil Ki Diwali (Hosted by Sarvesh & Rishi)\n📅 Sat 14 Nov 2026, 7:00 PM\n📍 Venue: ${addressText}\n📱 WhatsApp RSVP: +91 9372564362\n🍾 BYOB & Potluck: ${state.potluckItem}\n👗 Fit: ${state.selectedColor}`;
+        copyToClipboard(details, 'Reservation details copied! 📋');
+      });
+    }
+
+    
+
+    // --- LOCATION MODAL ---
+    const locationModalBtn = document.getElementById('locationModalBtn');
+    const locationModal = document.getElementById('locationModal');
+    const closeLocationModalBtn = document.getElementById('closeLocationModalBtn');
+
+    if (locationModalBtn) locationModalBtn.addEventListener('click', () => {
+      playSound('thud');
+      locationModal.classList.remove('hidden');
+    });
+    if (closeLocationModalBtn) closeLocationModalBtn.addEventListener('click', () => {
+      locationModal.classList.add('hidden');
+    });
+    if (locationModal) {
+      locationModal.addEventListener('click', (e) => {
+        if (e.target === locationModal) locationModal.classList.add('hidden');
+      });
+    }
+
+    // --- BACKGROUND MUSIC & SOUND CONTROLLER ---
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic) {
+      bgMusic.src = 'song.mp3';
+      bgMusic.volume = 0.7; // 70% volume
+      bgMusic.loop = true;
+    }
+    const soundToggleBtn = document.getElementById('soundToggleBtn');
+    let isMusicPlaying = false;
+    let wasPlayingBeforeHidden = false;
+
+    function playBgMusic() {
+      if (bgMusic && state.soundEnabled) {
+        bgMusic.volume = 0.7;
+        const playPromise = bgMusic.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            isMusicPlaying = true;
+            if (soundToggleBtn) soundToggleBtn.textContent = '🔊';
+            cleanupAutoplayTriggers();
+          }).catch((err) => {
+            console.log('Autoplay waiting for first touch/interaction:', err.message);
+          });
+        }
+      }
+    }
+
+    function pauseBgMusic() {
+      if (bgMusic) {
+        bgMusic.pause();
+        isMusicPlaying = false;
+        if (soundToggleBtn) soundToggleBtn.textContent = '🔇';
+      }
+    }
+
+    // Auto-stop music when user minimizes, switches tabs, locks phone, or leaves browser
+    function handleVisibilityOrBlur() {
+      if (document.hidden) {
+        if (isMusicPlaying) {
+          wasPlayingBeforeHidden = true;
+          pauseBgMusic();
+        }
+      } else {
+        // Automatically resume if it was playing before leaving
+        if (wasPlayingBeforeHidden && state.soundEnabled) {
+          playBgMusic();
+        }
+      }
+    }
+
+    document.addEventListener('visibilitychange', handleVisibilityOrBlur);
+
+    window.addEventListener('blur', () => {
+      if (isMusicPlaying) {
+        wasPlayingBeforeHidden = true;
+        pauseBgMusic();
+      }
+    });
+
+    window.addEventListener('focus', () => {
+      if (wasPlayingBeforeHidden && state.soundEnabled && !document.hidden) {
+        playBgMusic();
+      }
+    });
+
+    window.addEventListener('pagehide', () => {
+      if (bgMusic) bgMusic.pause();
+    });
+
+    // Auto-launch audio immediately when site loads with NO button press needed
+    function attemptAutoPlayOnLaunch() {
+      playBgMusic();
+    }
+
+    // Fallback: If browser autoplay policy blocks unprompted audio on initial launch,
+    // start playing automatically on ANY first touch, tap, swipe, or scroll anywhere on the screen!
+    function onFirstUserInteraction() {
+      if (!isMusicPlaying && !document.hidden) {
+        playBgMusic();
+      }
+    }
+
+    const autoplayEvents = ['pointerdown', 'touchstart', 'click', 'scroll', 'keydown'];
+    autoplayEvents.forEach(evt => {
+      window.addEventListener(evt, onFirstUserInteraction, { once: true, passive: true });
+    });
+
+    function cleanupAutoplayTriggers() {
+      autoplayEvents.forEach(evt => {
+        window.removeEventListener(evt, onFirstUserInteraction);
+      });
+    }
+
+    // Try playing immediately on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', attemptAutoPlayOnLaunch);
+    } else {
+      attemptAutoPlayOnLaunch();
+    }
+    window.addEventListener('load', attemptAutoPlayOnLaunch);
+
+    if (soundToggleBtn) {
+      soundToggleBtn.addEventListener('click', () => {
+        state.soundEnabled = !state.soundEnabled;
+        if (state.soundEnabled) {
+          soundToggleBtn.textContent = '🔊';
+          if (bgMusic) {
+            bgMusic.volume = 0.7;
+            bgMusic.play().then(() => {
+              isMusicPlaying = true;
+              showToast('Music & Sounds: ON (70%) 🔊', '🔊');
+            }).catch(() => {
+              playSound('chime');
+              showToast('Sound Effects: ON 🔊', '🔊');
+            });
+          } else {
+            playSound('chime');
+            showToast('Sound Effects: ON 🔊', '🔊');
+          }
+        } else {
+          pauseBgMusic();
+          wasPlayingBeforeHidden = false;
+          showToast('Sound Muted 🔇', '🔇');
+        }
+      });
+    }
+
+    // Also trigger on Diya ignition as backup
+    if (jalaoBtn) {
+      jalaoBtn.addEventListener('click', () => {
+        playBgMusic();
+      });
+    }
+  </script>
+</body>
+</html>
